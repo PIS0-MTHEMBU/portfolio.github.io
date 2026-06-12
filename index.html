@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simiso Sibonelo Mthembu — Developer Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:        #0d1117;
+      --surface:   #161b22;
+      --border:    #30363d;
+      --accent:    #7c6af7;
+      --accent-lt: #a89cf8;
+      --green:     #3fb950;
+      --text:      #e6edf3;
+      --muted:     #8b949e;
+      --mono:      'JetBrains Mono', monospace;
+      --sans:      'Inter', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13,17,23,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      height: 60px;
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      color: var(--accent-lt);
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: clamp(5rem, 12vw, 9rem) clamp(1.5rem, 8vw, 6rem) clamp(4rem, 8vw, 7rem);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 span {
+      color: var(--accent-lt);
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      padding: 0.7rem 1.6rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.7rem 1.6rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+
+    .btn-outline:hover { border-color: var(--accent); transform: translateY(-1px); }
+
+    /* ── STATUS BADGE ── */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--green);
+      background: rgba(63,185,80,0.1);
+      border: 1px solid rgba(63,185,80,0.25);
+      border-radius: 20px;
+      padding: 0.3rem 0.9rem;
+      margin-bottom: 2rem;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.4; }
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 8vw, 6rem);
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    section h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .about-text p { color: var(--muted); margin-bottom: 1rem; }
+
+    .about-photo {
+      display: flex;
+      justify-content: center;
+    }
+
+    .photo-frame {
+      position: relative;
+      width: 200px;
+      height: 200px;
+    }
+
+    .photo-frame::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--accent), transparent 60%);
+      z-index: 0;
+    }
+
+    .photo-frame img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.1rem 1.2rem;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+
+    .skill-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+    .skill-icon {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .skill-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .skill-sub {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::after {
+      content: '↗';
+      position: absolute;
+      top: 1rem;
+      right: 1.1rem;
+      font-size: 1rem;
+      color: var(--muted);
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .project-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(124,106,247,0.12);
+    }
+
+    .project-card:hover::after {
+      color: var(--accent);
+      transform: translate(2px, -2px);
+    }
+
+    .project-type {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .project-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .project-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      flex: 1;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--muted);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.2rem 0.5rem;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 10px 10px 0;
+      padding: 1.5rem 1.8rem;
+    }
+
+    .edu-year {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    .edu-qual {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .edu-inst {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .contact-info p {
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .contact-link:hover { border-color: var(--accent); background: rgba(124,106,247,0.06); }
+
+    .contact-link-icon {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      width: 28px;
+      text-align: center;
+    }
+
+    /* WhatsApp form */
+    .wa-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .wa-form input,
+    .wa-form textarea {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      transition: border-color 0.2s;
+      outline: none;
+      width: 100%;
+    }
+
+    .wa-form input::placeholder,
+    .wa-form textarea::placeholder { color: var(--muted); }
+
+    .wa-form input:focus,
+    .wa-form textarea:focus { border-color: var(--accent); }
+
+    .wa-form textarea { resize: vertical; min-height: 110px; }
+
+    .wa-btn {
+      background: #25D366;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0.75rem 1.4rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--sans);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .wa-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 2rem 1.5rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-family: var(--mono);
+    }
+
+    footer span { color: var(--accent-lt); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .about-grid,
+      .contact-grid { grid-template-columns: 1fr; }
+
+      .about-photo { order: -1; }
+
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="status-badge">
+    <span class="status-dot"></span>
+    Available for opportunities
+  </div>
+  <div class="hero-eyebrow">Computer Science Student · Developer</div>
+  <h1>Simiso<br/><span>Sibonelo</span><br/>Mthembu</h1>
+  <p class="hero-sub">
+    Building software with purpose. Passionate about Java, mobile development, and clean solutions to real problems.
+  </p>
+  <div class="hero-actions">
+    <a href="#contact" class="btn-primary">Get in touch</a>
+    <a href="#skills" class="btn-outline">View skills</a>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">// about</div>
+  <h2>Who I am</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm a motivated Computer Science student at Tshwane University of Technology, on track to complete my Diploma in 2026. I'm driven by a genuine curiosity for how technology works and a desire to build things that matter.
+      </p>
+      <p>
+        My focus areas include Java back-end development, Android mobile apps with Kotlin, and database design with Oracle PL/SQL. I enjoy working close to the problem and finding efficient, maintainable solutions.
+      </p>
+    </div>
+    <div class="about-photo">
+      <div class="photo-frame">
+        <img src="profile.jpg" alt="Simiso Sibonelo Mthembu" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">// skills</div>
+  <h2>Technical stack</h2>
+  <div class="skills-grid">
+
+    <div class="skill-card">
+      <div class="skill-icon">[lang]</div>
+      <div class="skill-name">Java</div>
+      <div class="skill-sub">OOP · Back-end · NetBeans</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">[mobile]</div>
+      <div class="skill-name">Kotlin</div>
+      <div class="skill-sub">Android · Android Studio</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">[db]</div>
+      <div class="skill-name">PL/SQL</div>
+      <div class="skill-sub">Oracle DB · Queries · Procedures</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">[web]</div>
+      <div class="skill-name">HTML / CSS / JS</div>
+      <div class="skill-sub">Responsive · Vanilla · UI</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">[os]</div>
+      <div class="skill-name">Linux</div>
+      <div class="skill-sub">Kali · Ubuntu · CLI</div>
+    </div>
+
+    <div class="skill-card">
+      <div class="skill-icon">[tools]</div>
+      <div class="skill-name">Dev Tools</div>
+      <div class="skill-sub">NetBeans · Android Studio · Git · VS Code</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">// projects</div>
+  <h2>Things I've built</h2>
+  <div class="projects-grid">
+
+    <a class="project-card" href="http://gamelearn.gamer.gd" target="_blank" rel="noopener">
+      <div class="project-type">Group Project</div>
+      <div class="project-name">GameLearn</div>
+      <div class="project-desc">
+        A collaborative web application built with friends — an educational platform that uses gaming concepts to make learning more engaging and interactive.
+      </div>
+      <div class="project-tags">
+        <span class="tag">Web App</span>
+        <span class="tag">Team Project</span>
+        <span class="tag">EdTech</span>
+      </div>
+    </a>
+
+    <a class="project-card" href="https://khayalethustudentloan.lovestoblog.com" target="_blank" rel="noopener">
+      <div class="project-type">Solo Project</div>
+      <div class="project-name">Khayalethu Student Loan</div>
+      <div class="project-desc">
+        A website built to help students find and apply for loan funding opportunities — making financial access information clear and accessible.
+      </div>
+      <div class="project-tags">
+        <span class="tag">Website</span>
+        <span class="tag">FinTech</span>
+        <span class="tag">HTML/CSS</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">// education</div>
+  <h2>Academic background</h2>
+  <div class="edu-card">
+    <div class="edu-year">2024 – 2026</div>
+    <div class="edu-qual">Diploma in Computer Science</div>
+    <div class="edu-inst">Tshwane University of Technology · Pretoria, South Africa</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">// contact</div>
+  <h2>Let's connect</h2>
+  <div class="contact-grid">
+
+    <div class="contact-info">
+      <p>Open to internships, junior developer roles, and collaborative projects. Reach out — I respond promptly.</p>
+
+      <a class="contact-link" href="mailto:simisosbo250@gmail.com">
+        <span class="contact-link-icon">@</span>
+        simisosbo250@gmail.com
+      </a>
+
+      <a class="contact-link" href="tel:+27721741336">
+        <span class="contact-link-icon">☏</span>
+        (+27) 72 174 1336
+      </a>
+
+      <a class="contact-link" href="https://wa.me/27721741336" target="_blank" rel="noopener">
+        <span class="contact-link-icon">WA</span>
+        WhatsApp direct
+      </a>
+    </div>
+
+    <div>
+      <div class="wa-form">
+        <input id="wa-name"    type="text"  placeholder="Your name" />
+        <input id="wa-email"   type="email" placeholder="Your email" />
+        <textarea id="wa-msg"  placeholder="Your message…"></textarea>
+        <button class="wa-btn" onclick="sendWhatsApp()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Send via WhatsApp
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Built by <span>Simiso Sibonelo Mthembu</span> &mdash; &copy; 2026</p>
+</footer>
+
+<script>
+  function sendWhatsApp() {
+    const name  = document.getElementById('wa-name').value.trim();
+    const email = document.getElementById('wa-email').value.trim();
+    const msg   = document.getElementById('wa-msg').value.trim();
+
+    if (!name || !msg) {
+      alert('Please fill in at least your name and message.');
+      return;
+    }
+
+    const text = `Hi Simiso! My name is ${name}${email ? ' ('+email+')' : ''}.\n\n${msg}`;
+    window.open(`https://wa.me/27721741336?text=${encodeURIComponent(text)}`, '_blank');
+  }
+</script>
+
+</body>
+</html>
