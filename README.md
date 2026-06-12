@@ -4,7 +4,7 @@ Personal developer portfolio built with HTML, CSS, and JavaScript. No frameworks
 
 ## 🚀 Live Site
 
-> **[simiso-mthembu.github.io](https://PISO-MTHEMBU.github.io)
+> **[PISO-MTHEMBU/portfolio.github.io](https://PISO-MTHEMBU/portfolio.github.io)
 
 ## 🛠 Stack
 
