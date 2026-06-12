@@ -4,7 +4,7 @@ Personal developer portfolio built with vanilla HTML, CSS, and JavaScript. No fr
 
 ## 🚀 Live Site
 
-> **[simiso-mthembu.github.io](https://simiso-mthembu.github.io)** *(update this once deployed)*
+> **[simiso-mthembu.github.io](https://PISO-MTHEMBU.github.io)** *(update this once deployed)*
 
 ## 🛠 Stack
 
